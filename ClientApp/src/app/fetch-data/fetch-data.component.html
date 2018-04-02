@@ -1,0 +1,33 @@
+<h1>Weather forecast</h1>
+
+<p *ngIf="!forecasts">
+  <em>Loading...</em>
+</p>
+
+<p *ngIf="ngServing" class="text-danger">
+  Serving from the brwoser, no SSR. Replacing :4200 with :5000 so that webapi works and adding a subdomain (foo.)
+  <br> This should prove that CORS is working fine.
+</p>
+
+<pre>API URL: {{url}}</pre>
+
+<table class='table' *ngIf="forecasts">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Temp. (C)</th>
+      <th>Temp. (F)</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let forecast of forecasts">
+      <td>{{ forecast.dateFormatted }}</td>
+      <td>{{ forecast.temperatureC }}</td>
+      <td>{{ forecast.temperatureF }}</td>
+      <td>{{ forecast.summary }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre *ngIf="error">{{error}}</pre>
