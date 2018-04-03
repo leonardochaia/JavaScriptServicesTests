@@ -10,8 +10,9 @@ export { AppServerModule } from './app/app.server.module';
 enableProdMode();
 
 export default createServerRenderer(params => {
+    console.log(`params.origin: ${params.origin}`);
+    console.log(`params.baseUrl: ${params.baseUrl}`);
     const { AppServerModule, AppServerModuleNgFactory, LAZY_MODULE_MAP } = (module as any).exports;
-
     const options = {
         document: params.data.originalHtml,
         url: params.url,
