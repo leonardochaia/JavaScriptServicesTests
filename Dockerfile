@@ -29,6 +29,4 @@ COPY --from=build /output /app
 
 WORKDIR /app
 
-#ENV ASPNETCORE_URLS http://+:5000
-
 ENTRYPOINT [ "dotnet", "ssr.dll" ]
