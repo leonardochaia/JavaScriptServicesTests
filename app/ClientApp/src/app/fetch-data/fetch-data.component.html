@@ -11,23 +11,11 @@
 
 <pre>API URL: {{url}}</pre>
 
-<table class='table' *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+<pre *ngIf="forecasts">{{forecasts | json}}</pre>
 
 <pre *ngIf="error">{{error}}</pre>
+
+<h1>Github API</h1>
+
+<pre *ngIf="githubData">{{githubData | json}}</pre>
+<pre *ngIf="githubError">{{githubError}}</pre>

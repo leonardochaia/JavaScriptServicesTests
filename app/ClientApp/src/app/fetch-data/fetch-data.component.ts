@@ -7,9 +7,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class FetchDataComponent {
   ngServing: boolean;
-  public forecasts: WeatherForecast[];
-  public url: string;
-  public error: any;
+  forecasts: WeatherForecast[];
+  url: string;
+  error: any;
+  githubData: any;
+  githubError: any;
 
   constructor(http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string) {
@@ -22,15 +24,19 @@ export class FetchDataComponent {
     }
 
     this.url = baseUrl + 'api/SampleData/WeatherForecasts';
-    console.log(this.url);
 
     http.get<WeatherForecast[]>(this.url).subscribe(result => {
       this.forecasts = result;
     }, (error: HttpErrorResponse) => {
-      console.error(error);
       this.error = `${error.status}  ${error.statusText}  ${error.message}`;
     });
 
+    http.get<any>(`https://api.github.com/`)
+      .subscribe(data => {
+        this.githubData = data;
+      }, (error: HttpErrorResponse) => {
+        this.githubError = `${error.status}  ${error.statusText}  ${error.message}`;
+      });
   }
 }
 
